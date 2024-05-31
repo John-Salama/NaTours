@@ -1,0 +1,51 @@
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//Media Queries Manager
+/*
+0 - 600px:      Phone
+600px - 900px:  Tab Port
+900px - 1200px: Tab Land
+1200px - 1800px: Big Desktop
+
+breakpoint: phone
+breakpoint: tab-port
+breakpoint: tab-land
+breakpoint: big-desktop
+
+ORDER: BASE + TYPOGRAPHY -> GENERAL LAYOUT -> COMPONENTS -> PAGES
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: $breakpoint-phone) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: $breakpoint-tab-port) {
+      @content;
+    }
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: $breakpoint-tab-land) {
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: $breakpoint-big-desktop) {
+      @content;
+    }
+  }
+}
